@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAVY STUDIO - Creative Motion &amp; Graphics Portfolio</title>
+    <meta name="description"
+        content="WAVY STUDIO is a premium creative agency specializing in 2D Motion Graphics, 3D Graphics, and Live 2D animations. View our portfolio and get in touch.">
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@100;200;300;400;500;600;700&family=Nanum+Square:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+
+</head>
+
+<body class="is-loading">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+    <div class="cursor-tooltip">Click to open in YouTube</div>
+
+    <!-- Fixed Top Navigation -->
+    <nav class="top-nav" aria-label="Primary Navigation">
+        <button class="nav-item magnetic-btn" data-target="#motion-graphics" id="nav-2d">
+            <span class="bracket">[</span>
+            <span class="nav-text">2D MOTION GRAPHICS</span>
+            <span class="bracket">]</span>
+        </button>
+        <button class="nav-item magnetic-btn" data-target="#interaction-3d" id="nav-3d">
+            <span class="bracket">[</span>
+            <span class="nav-text">3D GRAPHICS</span>
+            <span class="bracket">]</span>
+        </button>
+        <button class="nav-item magnetic-btn" data-target="#live2d-section" id="nav-live2d">
+            <span class="bracket">[</span>
+            <span class="nav-text">LIVE 2D</span>
+            <span class="bracket">]</span>
+        </button>
+    </nav>
+
+    <!-- Fixed Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Secondary Navigation">
+        <button class="nav-item magnetic-btn" data-category="entire-works" id="nav-works" data-target="#entire-works-section">
+            <span class="bracket">[</span>
+            <span class="nav-text">ENTIRE WORKS</span>
+            <span class="bracket">]</span>
+        </button>
+        <button class="nav-item magnetic-btn" data-category="contact" id="nav-contact" data-target="#contact-section">
+            <span class="bracket">[</span>
+            <span class="nav-text">CONTACT</span>
+            <span class="bracket">]</span>
+        </button>
+    </nav>
+
+
+
+    <!-- Main Scroll Snapping Container -->
+    <div class="main-scroller">
+        <div id="horizontal-track">
+
+            <!-- Section 01: Hero -->
+            <section class="section hero-section" id="hero">
+                <!-- Ambient video/image background -->
+                <div class="video-background-container">
+                    <iframe id="hero-yt-1" class="video-background-video" style="border:none; pointer-events:none; opacity:0; transition:opacity 0.6s ease;" allow="autoplay"></iframe>
+                    <iframe id="hero-yt-2" class="video-background-video" style="border:none; pointer-events:none; opacity:0; transition:opacity 0.6s ease;" allow="autoplay"></iframe>
+                    <div class="ambient-glow"></div>
+                </div>
+                <div class="overlay-black"></div>
+                <div id="initial-loader-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: color-mix(in srgb, var(--accent-cyan) 8%, #000000 92%); z-index: 2; transition: opacity 1.5s ease;"></div>
+
+                <div class="content-container">
+                    <!-- Center Title -->
+                    <div class="center-title">
+                        <span class="studio-label">STUDIO</span>
+                        <h1 class="main-title">
+                            <span class="letter-w">W</span><span class="letter-a">A</span><span
+                                class="letter-v">V</span><span class="letter-y">Y</span>
+                        </h1>
+                        <p style="font-family: var(--font-sans); font-size: 14px; font-weight: 300; color: var(--text-muted); letter-spacing: 0.3em; margin-top: 0px; opacity: 0; animation: fadeInText 2s ease 1.5s forwards;">Independent Designer</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 02: Motion Graphics -->
+            <section class="section mg-section" id="motion-graphics">
+                <video id="alpha-bg-video" autoplay muted playsinline>
+                    <source src="https://pub-e35da0e76d7041cd886660ef52aa63fc.r2.dev/wavit-whichesnight.webm" type="video/webm">
+                </video>
+
+                <!-- Page Number: "02" with deco, top-left -->
+                <div class="mg-page-number js-parallax" data-speed="0.12">
+                    <img src="assets/number_deco.svg" alt="" class="mg-number-deco" aria-hidden="true">
+                    <span class="mg-number-text"><span class="mg-num-grey">0</span>2</span>
+                </div>
+
+                <!-- Star deco: top-right area -->
+                <svg class="mg-star-deco js-parallax" data-speed="-0.15" width="579" height="579" viewBox="0 0 579 579" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <g clip-path="url(#clip0_star)">
+                        <path id="star-outer" d="M360.645 326.529L579 289.504L360.645 252.479L444.196 134.812L326.529 218.355L289.504 0L252.471 218.355L134.812 134.812L218.355 252.479L0 289.504L218.355 326.529L134.812 444.196L252.471 360.645L289.504 579L326.529 360.645L444.196 444.196L360.645 326.529Z" stroke="#9A9A9A" stroke-miterlimit="10" stroke-dasharray="2 2"/>
+                        <path id="star-inner" d="M299.703 295.243L331 290L299.703 284.757L311.678 268.09L294.807 279.928L289.5 249L284.193 279.928L267.322 268.09L279.305 284.757L248 290L279.305 295.243L267.322 311.91L284.193 300.08L289.5 331L294.807 300.08L311.678 311.91L299.703 295.243Z" fill="#9A9A9A"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_star">
+                            <rect width="579" height="579" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+
+                <!-- X shape deco: left side -->
+                <img src="assets/x_shape_deco.svg" alt="" class="mg-x-deco js-parallax" data-speed="0.2" aria-hidden="true">
+
+                <!-- Small deco: far right -->
+                <img src="assets/deco_small.svg" alt="" class="mg-small-deco js-parallax" data-speed="-0.25" aria-hidden="true">
+
+                <div class="mg-video-containers floating-layout">
+                    <div class="mg-floating-item js-parallax item-1" data-speed="-0.18">
+                        <div class="mg-video-rect">
+                            <iframe src="https://www.youtube-nocookie.com/embed/Koc9PIFQkjA?start=28&autoplay=0&mute=1&loop=1&playlist=Koc9PIFQkjA&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="mg-floating-item js-parallax item-2" data-speed="0.22">
+                        <div class="mg-video-rect">
+                            <iframe src="https://www.youtube-nocookie.com/embed/WiU-ITTfPEg?autoplay=0&mute=1&loop=1&playlist=WiU-ITTfPEg&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="mg-floating-item js-parallax item-3" data-speed="-0.08">
+                        <div class="mg-video-rect">
+                            <iframe src="https://www.youtube-nocookie.com/embed/Lxnl2D95EDU?start=34&autoplay=0&mute=1&loop=1&playlist=Lxnl2D95EDU&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Video Counter -->
+                <div class="media-controls-container">
+                    <button id="s2-play-btn" class="submit-btn play-toggle-btn" aria-label="Toggle Playback">
+                        <svg class="icon-play" style="display: none; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <svg class="icon-pause" style="display: block; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    </button>
+                    <button id="s2-mute-btn" class="submit-btn mute-toggle-btn" aria-label="Toggle Mute">
+                        <svg class="icon-unmuted" style="display: none; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg class="icon-muted" style="display: block; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div id="carousel-counter" class="carousel-counter">
+                    <div class="counter-num-box">
+                        <span id="current-vid-idx">01</span>
+                    </div>
+                    <span class="counter-divider">/</span>
+                    <span id="total-vid-count">12</span>
+                </div>
+
+                <!-- Cover Flow Toggle Button -->
+                <button id="view-toggle-btn" class="submit-btn">
+                    More FUN.!
+                </button>
+
+                <div class="touch-nav-buttons" id="touch-nav-s2">
+                    <button id="s2-prev" class="touch-nav-btn">&lt;</button>
+                    <button id="s2-next" class="touch-nav-btn">&gt;</button>
+                </div>
+
+                <!-- Bottom wave / frame1 deco -->
+                <img src="assets/frame1_deco.svg" alt="" class="mg-frame-deco js-parallax" data-speed="0.08" aria-hidden="true">
+
+            </section>
+
+            <!-- Section 03: 3D Interaction -->
+            <section class="section" id="interaction-3d" style="position: relative; overflow: hidden;">
+                <h2 class="panel-title" style="position: absolute; top: 12%; left: 50%; transform: translateX(-50%); z-index: 100;">3D GRAPHICS</h2>
+                <p style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 14px; color: var(--text-muted);">This page is still under construction.</p>
+                
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; perspective: 1200px; pointer-events: none;">
+                    <div class="js-carousel-3d-item" style="position: absolute; top: 50%; aspect-ratio: 16/9; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto;">
+                        <div class="mg-video-rect graphics-no-border" style="width: 100%; height: 100%;">
+                            <iframe src="https://www.youtube-nocookie.com/embed/Lxnl2D95EDU?start=199&autoplay=0&mute=1&loop=1&playlist=Lxnl2D95EDU&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy" style="width:100%; height:100%; border:none; transform:scale(1.01);"></iframe>
+                        </div>
+                    </div>
+                    <div class="js-carousel-3d-item" style="position: absolute; top: 50%; aspect-ratio: 16/9; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto;">
+                        <div class="mg-video-rect graphics-no-border" style="width: 100%; height: 100%;">
+                            <iframe src="https://www.youtube-nocookie.com/embed/_07BIWr67_4?start=5&autoplay=0&mute=1&loop=1&playlist=_07BIWr67_4&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy" style="width:100%; height:100%; border:none; transform:scale(1.01);"></iframe>
+                        </div>
+                    </div>
+                    <div class="js-carousel-3d-item" style="position: absolute; top: 50%; aspect-ratio: 16/9; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto;">
+                        <div class="mg-video-rect graphics-no-border" style="width: 100%; height: 100%;">
+                            <iframe src="https://www.youtube-nocookie.com/embed/WVA__b3UvBo?autoplay=0&mute=1&loop=1&playlist=WVA__b3UvBo&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" allow="autoplay; fullscreen" loading="lazy" style="width:100%; height:100%; border:none; transform:scale(1.01);"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="touch-nav-buttons" id="touch-nav-s3">
+                    <button id="s3-prev" class="touch-nav-btn">&lt;</button>
+                    <button id="s3-next" class="touch-nav-btn">&gt;</button>
+                </div>
+
+                <div class="media-controls-container">
+                    <button id="s3-play-btn" class="submit-btn play-toggle-btn" aria-label="Toggle Playback">
+                        <svg class="icon-play" style="display: none; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <svg class="icon-pause" style="display: block; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    </button>
+                    <button id="s3-mute-btn" class="submit-btn mute-toggle-btn" aria-label="Toggle Mute">
+                        <svg class="icon-unmuted" style="display: none; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg class="icon-muted" style="display: block; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel-counter" style="position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); z-index: 100; opacity: 1; color: #ffffff !important;">
+                    <div class="counter-num-box" id="counter-box-3d" style="vertical-align: middle; height: 18px; line-height: 18px;">
+                        <span style="display:block; transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; line-height: 18px;">01</span>
+                    </div>
+                    <span class="counter-divider" style="vertical-align: middle; line-height: 18px;">/</span>
+                    <span style="vertical-align: middle; line-height: 18px;">03</span>
+                </div>
+            </section>
+
+            <!-- Section 04: Live 2D -->
+<section id="live2d-section" class="section mg-section">
+    <h2 class="panel-title" style="position: absolute; top: 9%; left: 50%; transform: translateX(-50%); z-index: 100; color: #000000 !important;">LIVE 2D</h2>
+
+    <div style="position: absolute; top: 18%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center; pointer-events: none; width: 100%;">
+        <p style="font-family: var(--font-sans); font-size: 14px; font-weight: 400; letter-spacing: 0.2em; color: #000; opacity: 0.6; text-transform: uppercase;">This page is still under development.</p>
+    </div>
+
+    <div class="card-3d">
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+        <div class="js-carousel-4d-item" style="position: absolute; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="mg-video-rect"><iframe src="" allow="autoplay; fullscreen; compute-pressure"></iframe></div>
+        </div>
+    </div>
+
+    <div class="touch-nav-buttons">
+        <button id="s4-prev" class="touch-nav-btn magnetic-btn">&lt;</button>
+        <button id="s4-next" class="touch-nav-btn magnetic-btn">&gt;</button>
+    </div>
+
+    <div class="carousel-counter" style="position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); z-index: 100; opacity: 1; color: #000000 !important;">
+        <div class="counter-num-box" id="counter-box-4d" style="vertical-align: middle; height: 18px; line-height: 18px;">
+            <span style="display:block; transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; line-height: 18px;">01</span>
+        </div>
+        <span class="counter-divider" style="vertical-align: middle; line-height: 18px;">/</span>
+        <span style="vertical-align: middle; line-height: 18px;">06</span>
+    </div>
+    <div class="media-controls-container">
+        <button id="s4-play-btn" class="submit-btn play-toggle-btn magnetic-btn">
+            <svg class="icon-play" style="display: block; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg class="icon-pause" style="display: none; width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+        </button>
+        <button id="s4-mute-btn" class="submit-btn mute-toggle-btn magnetic-btn">
+            <svg class="icon-unmuted" style="display: none; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <svg class="icon-muted" style="display: block; width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        </button>
+    </div>
+</section>
+
+            <section class="section" id="entire-works-section" style="flex-direction: column; justify-content: center; position: relative;">
+                <h2 class="panel-title" style="margin-bottom: 20px;">05 ENTIRE WORKS</h2>
+                
+                <div id="works-scroll-container" style="width: 100%; height: 60vh; overflow-y: auto; scroll-behavior: smooth;">
+                    <div class="video-grid" id="youtube-grid"></div>
+                </div>
+
+                <div class="works-scroll-controls" style="display: flex; gap: 40px; margin-top: 30px; justify-content: center;">
+                    <button class="nav-item scroll-btn up-btn magnetic-btn">
+                        <span class="bracket">[</span>
+                        <span class="nav-text">PREV PAGE</span>
+                        <span class="bracket">]</span>
+                    </button>
+                    
+                    <div id="page-indicator" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-size: 13px; font-weight: 500; letter-spacing: 0.2em; color: var(--accent-cyan); width: 80px;">
+                        1 / 1
+                    </div>
+
+                    <button class="nav-item scroll-btn down-btn magnetic-btn">
+                        <span class="bracket">[</span>
+                        <span class="nav-text">NEXT PAGE</span>
+                        <span class="bracket">]</span>
+                    </button>
+                    <button class="nav-item scroll-btn back-btn magnetic-btn" style="display: none;">
+                        <span class="bracket">[</span>
+                        <span class="nav-text">BACK TO GRID</span>
+                        <span class="bracket">]</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="section" id="contact-section">
+                <div style="width: 100%; max-width: 800px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; justify-content: center;">
+                    
+                    <h3 id="greeting-wrapper" style="font-size: 42px; font-family: var(--font-serif); margin-bottom: 24px; position: relative; overflow: hidden; width: 100%; height: 65px;">
+                    </h3>
+                    
+                    <p style="color: var(--text-muted); font-size: 16px; line-height: 1.8; margin-bottom: 40px;">
+                        시청하는 사람들을 깜짝 놀래킬 수 있는 다채로운 영상을 목표로 하고 있습니다. 지금 계획하시는 작품과 맞을지 고민되신다면, 편한 마음으로 연락해 주시길 바랍니다. 함께 놀라운 작품으로 완성시킵시다.
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 32px; align-items: center;">
+                        <div class="detail-item" style="align-items: center;">
+                            <span class="detail-label">Direct Email</span>
+                            <div style="position: relative; cursor: none !important;" onmouseover="document.querySelector('.custom-cursor-follower').classList.add('show-copy-bubble'); document.body.classList.add('hovered-btn');" onmouseout="document.querySelector('.custom-cursor-follower').classList.remove('show-copy-bubble'); document.body.classList.remove('hovered-btn');">
+                                <span class="detail-val" id="email-text">wkjnaver@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item" style="align-items: center;">
+                            <span class="detail-label">Tools</span>
+                            <span class="detail-val">After Effects, Blender, Spine, Cubism Live2D</span>
+                        </div>
+                        
+                        <div class="detail-item" style="align-items: center;">
+                            <span class="detail-label">Social Coordinates</span>
+                            <a href="https://x.com/WAVY_mv" target="_blank" class="filter-btn" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; cursor: none !important;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.005 4.15H5.059z"/></svg>
+                                @WAVY_mv
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div><!-- /.main-scroller -->
+
+    <!-- JS Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
