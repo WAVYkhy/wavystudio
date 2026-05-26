@@ -2123,6 +2123,12 @@ function forcePlayAllSection2Videos() {
                         controlYT(item.iframe, 'pauseVideo');
                     });
                 } else {
+                    // Reset global mute state to true when entering Section 3
+                    window.isUserMuted = true;
+                    if (typeof updateMuteButtonsUI === 'function') {
+                        updateMuteButtonsUI();
+                    }
+
                     // [FIX] Kill-switch: Force Section 2 to pause instantly when Section 3 becomes visible
                     if (typeof floatData !== 'undefined') {
                         floatData.forEach(item => {
@@ -2131,7 +2137,6 @@ function forcePlayAllSection2Videos() {
                     }
 
                     // FORCE CHRONO LAYOUT CORRECTION ON SCROLL ENTRANCE
-                    // The layout manager (update3DCarouselLayout) will safely handle playback targeting.
                     update3DCarouselLayout(window.innerWidth / 2 - 10, window.innerHeight / 2);
                 }
             });
@@ -2507,6 +2512,12 @@ function forcePlayAllSection2Videos() {
                     controlYT(item.iframe, 'pauseVideo');
                 });
             } else {
+                // Reset global mute state to true when entering Section 4
+                window.isUserMuted = true;
+                if (typeof updateMuteButtonsUI === 'function') {
+                    updateMuteButtonsUI();
+                }
+
                 // Kill-switch other active carousels
                 if (typeof itemsData3D !== 'undefined') {
                     itemsData3D.forEach(item => controlYT(item.iframe, 'pauseVideo'));
