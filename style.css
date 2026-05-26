@@ -279,6 +279,14 @@ body.hovered-close .custom-cursor-follower {
     mix-blend-mode: difference;
 }
 
+#nav-3d {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: max-content;
+}
+
 .nav-item {
     background: none;
     border: none;
@@ -959,6 +967,11 @@ body.hovered-close .custom-cursor-follower {
 
     .panel-title {
         font-size: 32px;
+    }
+
+    #nav-3d {
+        position: static;
+        margin: 0;
     }
 }
 
