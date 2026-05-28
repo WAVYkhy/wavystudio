@@ -84,42 +84,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-function setS2PlayUi(isPlaying) {
-  const s2PlayBtn = document.getElementById('s2-play-btn');
-  if (!s2PlayBtn) return;
+    function setS2PlayUi(isPlaying) {
+        const s2PlayBtn = document.getElementById('s2-play-btn');
+        if (!s2PlayBtn) return;
 
-  const playIcon = s2PlayBtn.querySelector('.icon-play');
-  const pauseIcon = s2PlayBtn.querySelector('.icon-pause');
+        const playIcon = s2PlayBtn.querySelector('.icon-play');
+        const pauseIcon = s2PlayBtn.querySelector('.icon-pause');
 
-  if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
-  if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
-}
+        if (playIcon) playIcon.style.display = isPlaying ? 'none' : 'block';
+        if (pauseIcon) pauseIcon.style.display = isPlaying ? 'block' : 'none';
+    }
 
-function forcePlayAllSection2Videos() {
-  if (typeof floatData === 'undefined') return;
-  if (isCoverFlow) return;
-  if (!window.isMgSectionVisible) return;
+    function forcePlayAllSection2Videos() {
+        if (typeof floatData === 'undefined') return;
+        if (isCoverFlow) return;
+        if (!window.isMgSectionVisible) return;
 
-  window.isS2Playing = true;
-  setS2PlayUi(true);
+        window.isS2Playing = true;
+        setS2PlayUi(true);
 
-  floatData.forEach((item) => {
-    if (!item || !item.active) return;
+        floatData.forEach((item) => {
+            if (!item || !item.active) return;
 
-    const thumb = item.el ? item.el.querySelector('.carousel-thumb-img') : null;
-    if (thumb) thumb.style.display = 'none';
+            const thumb = item.el ? item.el.querySelector('.carousel-thumb-img') : null;
+            if (thumb) thumb.style.display = 'none';
 
-    getOrCreatePlayer(item.active, (player) => {
-      try {
-        player.playVideo();
-        player.mute();
-      } catch (err) {}
-    });
+            getOrCreatePlayer(item.active, (player) => {
+                try {
+                    player.playVideo();
+                    player.mute();
+                } catch (err) { }
+            });
 
-    controlYT(item.active, 'playVideo');
-    controlYT(item.active, 'mute');
-  });
-}
+            controlYT(item.active, 'playVideo');
+            controlYT(item.active, 'mute');
+        });
+    }
 
     // Global listener to detect YouTube player status (Muted, Volume, Buffering)
     window.addEventListener('message', (e) => {
@@ -134,7 +134,7 @@ function forcePlayAllSection2Videos() {
                     matchedItem.actualState = data.info.playerState; // 1: playing, 3: buffering
                 }
             }
-        } catch(err) {}
+        } catch (err) { }
     });
     // -------------------------------------------------------------
     // 1. Custom Interactive Cursor (Smooth Magnetic Lerp)
@@ -149,7 +149,7 @@ function forcePlayAllSection2Videos() {
     let followerX = mouseX;
     let followerY = mouseY;
     let cursorHideTimeout;
-    
+
     const lerp = (a, b, n) => (1 - n) * a + n * b;
 
     window.addEventListener('mousemove', (e) => {
@@ -179,10 +179,10 @@ function forcePlayAllSection2Videos() {
 
     function animateCursor() {
         // Main cursor is now instant (no lag)
-        cursorX = mouseX; 
+        cursorX = mouseX;
         cursorY = mouseY;
         // Follower retains a smooth but fast trail
-        followerX = lerp(followerX, mouseX, 0.35); 
+        followerX = lerp(followerX, mouseX, 0.35);
         followerY = lerp(followerY, mouseY, 0.35);
 
         // Use left and top instead of transform to prevent overriding CSS animations
@@ -234,7 +234,7 @@ function forcePlayAllSection2Videos() {
 
                 // Move button 35% towards the cursor, text 20%
                 btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
-                
+
                 const text = btn.querySelector('.nav-text');
                 if (text) {
                     text.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
@@ -313,7 +313,7 @@ function forcePlayAllSection2Videos() {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = item.getAttribute('data-target');
-            
+
             // [FIX] Instantly mute and pause ALL global videos before navigating away
             if (typeof floatData !== 'undefined') {
                 floatData.forEach(vid => {
@@ -544,7 +544,7 @@ function forcePlayAllSection2Videos() {
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < columns; c++) {
                     const idx = r * columns + c;
-                    
+
                     // Draw line to right neighbor
                     if (c < columns - 1) {
                         ctx.beginPath();
@@ -593,7 +593,7 @@ function forcePlayAllSection2Videos() {
         const leftEyeCenterY = 95;
         const rightEyeCenterX = 125;
         const rightEyeCenterY = 95;
-        
+
         window.addEventListener('mousemove', (e) => {
             if (!trackingActive) return;
 
@@ -631,13 +631,13 @@ function forcePlayAllSection2Videos() {
     // -------------------------------------------------------------
     // 7. Contact Submission Success Feedback
     // -------------------------------------------------------------
-    window.handleContactSubmit = function() {
+    window.handleContactSubmit = function () {
         const form = document.getElementById('contact-us-form');
         const container = form.parentElement;
 
         container.style.opacity = '0';
         container.style.transform = 'translateY(15px)';
-        
+
         setTimeout(() => {
             container.innerHTML = `
                 <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 0;">
@@ -672,7 +672,7 @@ function forcePlayAllSection2Videos() {
             }
         });
     }, { threshold: 0.2 });
-    
+
     const heroSec = document.getElementById('hero');
     if (heroSec) navObserver.observe(heroSec);
 
@@ -685,27 +685,27 @@ function forcePlayAllSection2Videos() {
     let isCoverFlow = true;
 
     const tooltip = document.querySelector('.cursor-tooltip');
-    
+
     window.addEventListener('mousemove', (e) => {
         // Check if mouse is hovering over the toggle button
         const isHoveringToggle = e.target.closest ? e.target.closest('#view-toggle-btn') : null;
 
         // Disable tooltip if in Physics mode, section is hidden, or hovering the toggle button
         const sec3 = document.getElementById('interaction-3d');
-        const sec3Rect = sec3 ? sec3.getBoundingClientRect() : {left: 9999, right: -9999};
+        const sec3Rect = sec3 ? sec3.getBoundingClientRect() : { left: 9999, right: -9999 };
         const isSec3Visible = (sec3Rect.left < window.innerWidth) && (sec3Rect.right > 0);
 
         const sec4 = document.getElementById('live2d-section');
-        const sec4Rect = sec4 ? sec4.getBoundingClientRect() : {left: 9999, right: -9999};
+        const sec4Rect = sec4 ? sec4.getBoundingClientRect() : { left: 9999, right: -9999 };
         const isSec4Visible = (sec4Rect.left < window.innerWidth) && (sec4Rect.right > 0);
-        
+
         // Ensure tooltip isn't killed if Section 4 is visible
         if (isHoveringToggle || (!isSec3Visible && !isSec4Visible && (!isCoverFlow || !window.isMgSectionVisible))) {
             return;
         }
-        
+
         const isHoveringVideo = (e.target && typeof e.target.closest === 'function') ? e.target.closest('#motion-graphics .mg-video-rect, #interaction-3d .mg-video-rect, #live2d-section .mg-video-rect') : null;
-        
+
         if (isHoveringVideo) {
             document.body.classList.add('hovered-btn');
             if (tooltip) {
@@ -747,7 +747,7 @@ function forcePlayAllSection2Videos() {
         viewToggleBtn.addEventListener('click', () => {
             isCoverFlow = !isCoverFlow;
             window.lastCoverIndex = -1;
-            
+
             // Dynamically change text based on active view mode
             if (isCoverFlow) {
                 viewToggleBtn.textContent = 'More FUN.!';
@@ -774,11 +774,11 @@ function forcePlayAllSection2Videos() {
                     item.el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
                     item.el.classList.remove('cover-flow-active');
                     item.el.style.opacity = '1';
-                    
+
                     const rect = item.el.getBoundingClientRect();
                     item.baseX = rect.left;
                     item.baseY = rect.top;
-                    
+
                     setTimeout(() => {
                         if (!isCoverFlow) item.el.style.transition = '';
                     }, 800);
@@ -792,8 +792,8 @@ function forcePlayAllSection2Videos() {
 
                 const bgVid = document.getElementById('alpha-bg-video');
                 if (bgVid) {
-                  bgVid.play().catch(() => {});
-                  bgVid.style.opacity = 0.5;
+                    bgVid.play().catch(() => { });
+                    bgVid.style.opacity = 0.5;
                 }
 
                 forcePlayAllSection2Videos();
@@ -838,7 +838,7 @@ function forcePlayAllSection2Videos() {
     function createShapeBurst(x, y) {
         // Apply Screen Shake to the section itself to prevent fixed-position stacking context bugs
         const mgSection = document.getElementById('motion-graphics');
-        if(mgSection) {
+        if (mgSection) {
             mgSection.classList.add('impact-shake');
             setTimeout(() => mgSection.classList.remove('impact-shake'), 400);
         }
@@ -890,7 +890,7 @@ function forcePlayAllSection2Videos() {
     function createVideoTrail(item) {
         const rect = item.el.getBoundingClientRect();
         const secRect = targetSection.getBoundingClientRect();
-        
+
         const trail = document.createElement('div');
         trail.className = 'mg-video-trail';
         trail.style.width = `${rect.width}px`;
@@ -898,7 +898,7 @@ function forcePlayAllSection2Videos() {
         // Calculate absolute position within the section container
         trail.style.left = `${rect.left - secRect.left}px`;
         trail.style.top = `${rect.top - secRect.top}px`;
-        
+
         targetSection.appendChild(trail);
         setTimeout(() => trail.remove(), 2000);
     }
@@ -907,35 +907,35 @@ function forcePlayAllSection2Videos() {
     function randomizeTransform(item, allItems) {
         const w = window.innerWidth;
         const h = window.innerHeight;
-        
+
         // Dynamic scale and padding: larger size & smaller padding on mobile (portrait)
         const isPortrait = h > w;
         // Responsive scaling adjusted for a better fit across all screen sizes
         const minScale = isPortrait ? 0.38 : 0.18; // 38% width on mobile, 18% width on desktop
         const varScale = isPortrait ? 0.17 : 0.12; // Variance modifier
-        const padX = isPortrait ? w * 0.05 : w * 0.12; 
-        const padY = isPortrait ? h * 0.08 : h * 0.15; 
-        
-        const newWidth = Math.random() * (w * varScale) + (w * minScale); 
-        
+        const padX = isPortrait ? w * 0.05 : w * 0.12;
+        const padY = isPortrait ? h * 0.08 : h * 0.15;
+
+        const newWidth = Math.random() * (w * varScale) + (w * minScale);
+
         let bestX = 0, bestY = 0, maxScore = -1;
-        
-        for(let i = 0; i < 30; i++) {
+
+        for (let i = 0; i < 30; i++) {
             let tx = Math.random() * (w - newWidth - padX * 2) + padX;
             let ty = Math.random() * (h * 0.7 - padY * 2) + padY;
-            
+
             let cx = tx + newWidth / 2;
-            let cy = ty + (newWidth * 9/16) / 2;
+            let cy = ty + (newWidth * 9 / 16) / 2;
             let distToMouse = Math.hypot(cx - mouseX, cy - mouseY);
-            if (distToMouse < 450) continue; 
-            
+            if (distToMouse < 450) continue;
+
             let minDistance = 9999;
             allItems.forEach(other => {
                 if (other === item || other.baseX === -9999) return;
                 let dist = Math.hypot(tx - other.baseX, ty - other.baseY);
                 if (dist < minDistance) minDistance = dist;
             });
-            
+
             if (minDistance > maxScore) {
                 maxScore = minDistance;
                 bestX = tx;
@@ -959,7 +959,7 @@ function forcePlayAllSection2Videos() {
     const floatData = Array.from(floatingItems).map(el => {
         const rectContainer = el.querySelector('.mg-video-rect');
         const activeIframe = el.querySelector('iframe');
-        
+
         // Setup active iframe for absolute stacking
         activeIframe.style.position = 'absolute';
         activeIframe.style.top = '0';
@@ -971,12 +971,12 @@ function forcePlayAllSection2Videos() {
         const bufferIframe = document.createElement('iframe');
         const nextVid = videoPool[videoIndex];
         videoIndex = (videoIndex + 1) % videoPool.length;
-        
+
         const startParamBuffer = nextVid.start > 0 ? `&start=${nextVid.start}` : '';
         bufferIframe.src = "";
         bufferIframe.setAttribute('allow', 'autoplay; fullscreen; compute-pressure');
         bufferIframe.style.cssText = "width:100%; height:100%; border:none; pointer-events:none; transform:scale(1.01); position:absolute; top:0; left:0; opacity:0; transition:opacity 0.6s;";
-        
+
         rectContainer.appendChild(bufferIframe);
 
         const item = {
@@ -992,7 +992,7 @@ function forcePlayAllSection2Videos() {
         };
         return item;
     });
-    
+
     floatData.forEach(item => {
         randomizeTransform(item, floatData);
         if (isCoverFlow) {
@@ -1003,13 +1003,13 @@ function forcePlayAllSection2Videos() {
     // Create SVG overlay for dynamic connection lines between videos
     const connectionSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     connectionSvg.style.cssText = "position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: visible;";
-    
+
     const lines = [
         document.createElementNS("http://www.w3.org/2000/svg", "line"),
         document.createElementNS("http://www.w3.org/2000/svg", "line"),
         document.createElementNS("http://www.w3.org/2000/svg", "line")
     ];
-    
+
     lines.forEach(line => {
         line.setAttribute("stroke", "#9A9A9A");
         line.setAttribute("stroke-width", "0.5");
@@ -1018,7 +1018,7 @@ function forcePlayAllSection2Videos() {
         line.style.opacity = "1";
         connectionSvg.appendChild(line);
     });
-    
+
     document.querySelector('.mg-video-containers.floating-layout').appendChild(connectionSvg);
 
     function updateCoverFlowVideos(activeIndex) {
@@ -1027,7 +1027,7 @@ function forcePlayAllSection2Videos() {
         }
         const totalVideos = videoPool.length;
         const oldCenterItem = floatData.find(item => item.pos === 0);
-        
+
         window.lastCoverIndex = activeIndex;
 
         // Update Alpha Background video dynamically with Fade In/Out
@@ -1044,7 +1044,7 @@ function forcePlayAllSection2Videos() {
                 if (targetAlphaSrc) {
                     if (alphaBgVid.src !== targetAlphaSrc) {
                         alphaBgVid.src = targetAlphaSrc;
-                        alphaBgVid.play().catch(() => {});
+                        alphaBgVid.play().catch(() => { });
                     }
                     // Step 3: Fade back into the target 50% opacity
                     alphaBgVid.style.opacity = '0.5';
@@ -1079,7 +1079,7 @@ function forcePlayAllSection2Videos() {
         floatData.forEach(item => {
             if (item.volumeInterval) clearInterval(item.volumeInterval);
             if (item.fadeTimeout) clearTimeout(item.fadeTimeout);
-            
+
             // Instantly mute and pause any video that is no longer the center
             if (item !== newCenterItem) {
                 controlYT(item.active, 'mute');
@@ -1093,24 +1093,24 @@ function forcePlayAllSection2Videos() {
                 const vidData = videoPool[item.vidIdx];
                 const startParamNew = vidData.start > 0 ? `&start=${vidData.start}` : '';
                 const newSrc = `https://www.youtube-nocookie.com/embed/${vidData.id}?${startParamNew}&autoplay=1&mute=1&loop=1&playlist=${vidData.id}&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.protocol === 'file:' ? 'https://localhost' : window.location.origin}`;
-                
+
                 item.justSwapped = false;
                 if (item.currentVidId !== vidData.id) {
                     item.currentVidId = vidData.id;
                     item.el.style.transition = 'none';
-                    
+
                     item.active.style.opacity = '0.01';
-                    
+
                     const activePlayer = getOrCreatePlayer(item.active);
                     if (activePlayer && typeof activePlayer.loadVideoById === 'function') {
                         activePlayer.loadVideoById({ videoId: vidData.id, startSeconds: vidData.start || 0 });
                         activePlayer.mute();
                     }
-                    
+
                     item.justSwapped = true;
                     void item.el.offsetWidth;
                     item.el.style.transition = '';
-                    
+
                     setTimeout(() => {
                         item.active.style.opacity = '1';
                     }, 1500);
@@ -1127,7 +1127,7 @@ function forcePlayAllSection2Videos() {
                 } else {
                     controlYT(newCenterItem.active, 'mute');
                 }
-                
+
                 // Respect default pause state
                 const shouldPlay = typeof window.isS2Playing !== 'undefined' ? window.isS2Playing : false;
                 if (shouldPlay) {
@@ -1208,7 +1208,7 @@ function forcePlayAllSection2Videos() {
                 box.appendChild(nextNum);
                 void box.offsetWidth;
 
-                if (isUp) { oldNum.style.transform = 'translateY(100%)'; } 
+                if (isUp) { oldNum.style.transform = 'translateY(100%)'; }
                 else { oldNum.style.transform = 'translateY(-100%)'; }
                 oldNum.style.opacity = '0';
                 nextNum.style.transform = 'translateY(0)';
@@ -1228,7 +1228,7 @@ function forcePlayAllSection2Videos() {
 
     function renderEngine() {
         if (!scrollerContainer || !targetSection) return;
-        
+
         const currentScroll = window.scrollY;
         const sectionOffset = sections.indexOf(targetSection) * window.innerHeight;
         const relativeDelta = currentScroll - sectionOffset;
@@ -1320,7 +1320,7 @@ function forcePlayAllSection2Videos() {
                     const rect = item.el.getBoundingClientRect();
                     const cx = rect.left + rect.width / 2;
                     const cy = rect.top + rect.height / 2;
-                    
+
                     const isMouseActive = !(mouseX === 0 && mouseY === 0);
                     const dx = isMouseActive ? mouseX - cx : 9999;
                     const dy = isMouseActive ? mouseY - cy : 9999;
@@ -1340,7 +1340,7 @@ function forcePlayAllSection2Videos() {
                     // Update base position with mouse push force
                     item.baseX += item.repelX;
                     item.baseY += item.repelY;
-                    
+
                     item.el.style.left = `${item.baseX}px`;
                     item.el.style.top = `${item.baseY}px`;
                     item.el.style.transform = `translate3d(0, ${parallaxY}px, 0)`;
@@ -1368,7 +1368,7 @@ function forcePlayAllSection2Videos() {
                     const isSectionActive = Math.abs(relativeDelta) < (window.innerHeight * 0.5);
                     if (hitEdge && isMature && isSectionActive) {
                         item.state = 'flying';
-                        
+
                         // Calculate burst position near the screen edge instead of the center
                         let burstX = cx, burstY = cy;
                         if (hitEdge === 'left') { burstX = 30; }
@@ -1378,7 +1378,7 @@ function forcePlayAllSection2Videos() {
 
                         // Trigger 2D shape motion at the disappearing edge
                         createShapeBurst(burstX, burstY);
-                        
+
                         let exitX = 0, exitY = 0;
                         let spawnX = 0, spawnY = 0;
 
@@ -1400,35 +1400,35 @@ function forcePlayAllSection2Videos() {
                             const temp = item.active; item.active = item.buffer; item.buffer = temp;
 
                             if (!isCoverFlow) {
-                              setTimeout(() => {
-                                if (!item || !item.active) return;
-                                
-                                // Ensure visibility
-                                item.active.style.opacity = 1;
-                                
-                                // Force Mute and Play
-                                controlYT(item.active, 'mute');
-                                controlYT(item.active, 'playVideo');
-                                
-                                getOrCreatePlayer(item.active, (player) => {
-                                  try {
-                                    player.mute();
-                                    player.playVideo();
-                                  } catch (err) {}
-                                });
-                              }, 150);
+                                setTimeout(() => {
+                                    if (!item || !item.active) return;
+
+                                    // Ensure visibility
+                                    item.active.style.opacity = 1;
+
+                                    // Force Mute and Play
+                                    controlYT(item.active, 'mute');
+                                    controlYT(item.active, 'playVideo');
+
+                                    getOrCreatePlayer(item.active, (player) => {
+                                        try {
+                                            player.mute();
+                                            player.playVideo();
+                                        } catch (err) { }
+                                    });
+                                }, 150);
                             }
 
                             setTimeout(() => {
-                              if (!isCoverFlow) {
-                                forcePlayAllSection2Videos();
-                              }
+                                if (!isCoverFlow) {
+                                    forcePlayAllSection2Videos();
+                                }
                             }, 120);
 
                             // Load next video via Official API instance
                             const nextVid = videoPool[videoIndex];
                             videoIndex = (videoIndex + 1) % videoPool.length;
-                            
+
                             const startParam = nextVid.start > 0 ? `&start=${nextVid.start}` : '';
                             const originStr = window.location.protocol === 'file:' ? 'https://localhost' : window.location.origin;
                             const fallbackSrc = `https://www.youtube-nocookie.com/embed/${nextVid.id}?autoplay=1&mute=1&loop=1&playlist=${nextVid.id}&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${originStr}${startParam}`;
@@ -1436,12 +1436,12 @@ function forcePlayAllSection2Videos() {
                             const bufferPlayer = getOrCreatePlayer(item.buffer);
 
                             if (bufferPlayer && typeof bufferPlayer.loadVideoById === 'function') {
-                              bufferPlayer.loadVideoById({ videoId: nextVid.id, startSeconds: nextVid.start || 0 });
-                              bufferPlayer.mute();
-                              try { bufferPlayer.playVideo(); } catch(e) {}
+                                bufferPlayer.loadVideoById({ videoId: nextVid.id, startSeconds: nextVid.start || 0 });
+                                bufferPlayer.mute();
+                                try { bufferPlayer.playVideo(); } catch (e) { }
                             } else {
-                              // Fallback: Force update the src if the YouTube API is not ready yet
-                              item.buffer.src = fallbackSrc;
+                                // Fallback: Force update the src if the YouTube API is not ready yet
+                                item.buffer.src = fallbackSrc;
                             }
 
                             // Teleport to opposite side
@@ -1456,31 +1456,31 @@ function forcePlayAllSection2Videos() {
                             // Calculate new safe position inside the screen
                             randomizeTransform(item, floatData);
 
-                             setTimeout(() => {
+                            setTimeout(() => {
                                 // Fly in from opposite side to new random position
                                 item.el.style.transition = 'left 1s cubic-bezier(0.2, 0.8, 0.2, 1), top 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1s';
                                 item.el.style.opacity = '1';
-                                
+
                                 item.el.style.left = `${item.baseX}px`;
                                 item.el.style.top = `${item.baseY}px`;
                                 item.el.style.transform = `translate3d(0px, ${parallaxY}px, 0) scale(1) rotate(0deg)`;
 
                                 // [FIX] Force autoplay and ALWAYS mute for new items in Physics Mode
                                 if (!isCoverFlow) {
-                                  controlYT(item.active, 'mute');
-                                  controlYT(item.active, 'playVideo');
-                                  getOrCreatePlayer(item.active, (player) => {
-                                    try {
-                                      player.mute();
-                                      player.playVideo();
-                                    } catch (err) {}
-                                  });
+                                    controlYT(item.active, 'mute');
+                                    controlYT(item.active, 'playVideo');
+                                    getOrCreatePlayer(item.active, (player) => {
+                                        try {
+                                            player.mute();
+                                            player.playVideo();
+                                        } catch (err) { }
+                                    });
                                 }
 
                                 setTimeout(() => {
                                     item.el.style.transition = 'none';
                                     if (!isCoverFlow) {
-                                      forcePlayAllSection2Videos();
+                                        forcePlayAllSection2Videos();
                                     }
                                     item.state = 'idle';
                                     item.spawnTime = Date.now();
@@ -1527,25 +1527,25 @@ function forcePlayAllSection2Videos() {
                 const direction = speedRate >= 0 ? 1 : -1;
                 speedRate = direction * (item.el.clientWidth * 0.0006);
                 const pY = relativeDelta * speedRate;
-                
+
                 return {
                     x: item.baseX + item.el.offsetWidth / 2,
                     y: item.baseY + item.el.offsetHeight / 2 + pY
                 };
             };
-            
+
             const pts = [getCenter(floatData[0]), getCenter(floatData[1]), getCenter(floatData[2])];
-            
+
             // Line 0 (Connects Video 0 and Video 1)
             lines[0].setAttribute("x1", pts[0].x); lines[0].setAttribute("y1", pts[0].y);
             lines[0].setAttribute("x2", pts[1].x); lines[0].setAttribute("y2", pts[1].y);
             lines[0].style.opacity = (floatData[0].state === 'idle' && floatData[1].state === 'idle') ? "1" : "0";
-            
+
             // Line 1 (Connects Video 1 and Video 2)
             lines[1].setAttribute("x1", pts[1].x); lines[1].setAttribute("y1", pts[1].y);
             lines[1].setAttribute("x2", pts[2].x); lines[1].setAttribute("y2", pts[2].y);
             lines[1].style.opacity = (floatData[1].state === 'idle' && floatData[2].state === 'idle') ? "1" : "0";
-            
+
             // Line 2 (Connects Video 2 and Video 0)
             lines[2].setAttribute("x1", pts[2].x); lines[2].setAttribute("y1", pts[2].y);
             lines[2].setAttribute("x2", pts[0].x); lines[2].setAttribute("y2", pts[0].y);
@@ -1554,7 +1554,7 @@ function forcePlayAllSection2Videos() {
 
         requestAnimationFrame(renderEngine);
     }
-    
+
     renderEngine();
 
     // --- ALPHA VIDEO PLAYBACK LOGIC ---
@@ -1566,24 +1566,24 @@ function forcePlayAllSection2Videos() {
         bgVidSync.addEventListener('ended', () => {
             if (isCoverFlow) {
                 // Manually loop the video in Cover Flow mode
-                bgVidSync.play().catch(() => {});
+                bgVidSync.play().catch(() => { });
             } else {
                 // Random playback in Physics Mode
                 bgVidSync.style.opacity = '0';
-                
+
                 setTimeout(() => {
                     // Pick a random video, ensuring it doesn't play the exact same one twice in a row
                     let nextIndex;
                     do {
                         nextIndex = Math.floor(Math.random() * alphaVideoPool.length);
                     } while (nextIndex === physicsAlphaIndex && alphaVideoPool.length > 1);
-                    
+
                     physicsAlphaIndex = nextIndex;
                     const targetSrc = alphaVideoPool[physicsAlphaIndex];
 
                     if (targetSrc) {
                         bgVidSync.src = targetSrc;
-                        bgVidSync.play().catch(() => {});
+                        bgVidSync.play().catch(() => { });
                     }
 
                     // Fade back in to 50% opacity
@@ -1624,7 +1624,7 @@ function forcePlayAllSection2Videos() {
     ];
 
     // Setup Hero Video Double Buffering & Manual Controls (Interactive next cursor & skip)
-    (function() {
+    (function () {
         const iframe1 = document.getElementById('hero-yt-1');
         const iframe2 = document.getElementById('hero-yt-2');
         const heroSection = document.getElementById('hero');
@@ -1683,7 +1683,7 @@ function forcePlayAllSection2Videos() {
                     activeIframe = 2;
 
                     // Preload the next video in the hidden iframe1
-                    setTimeout(() => { 
+                    setTimeout(() => {
                         getOrCreatePlayer(iframe1, (player) => {
                             player.loadVideoById({ videoId: nextVidData.id, startSeconds: nextVidData.start || 0 });
                             player.mute();
@@ -1700,7 +1700,7 @@ function forcePlayAllSection2Videos() {
                     activeIframe = 1;
 
                     // Preload the next video in the hidden iframe2
-                    setTimeout(() => { 
+                    setTimeout(() => {
                         getOrCreatePlayer(iframe2, (player) => {
                             player.loadVideoById({ videoId: nextVidData.id, startSeconds: nextVidData.start || 0 });
                             player.mute();
@@ -1747,8 +1747,8 @@ function forcePlayAllSection2Videos() {
                 if (clickCount >= 4) {
                     // Add 'calm-down' class to follower instead of cursor
                     follower.classList.add('calm-down');
-                    setTimeout(() => { 
-                        follower.classList.remove('calm-down'); 
+                    setTimeout(() => {
+                        follower.classList.remove('calm-down');
                     }, 1500); // Matches the 1.5s lifecycle animation
                 }
 
@@ -1770,7 +1770,7 @@ function forcePlayAllSection2Videos() {
                 // Temporarily add 'clicked' class to both arrow and follower for synchronized animation
                 cursor.classList.add('clicked');
                 follower.classList.add('clicked');
-                
+
                 setTimeout(() => {
                     cursor.classList.remove('clicked');
                     follower.classList.remove('clicked');
@@ -1800,37 +1800,37 @@ function forcePlayAllSection2Videos() {
         }, { passive: true });
     }
 
-        // Touch Swipe Section Snapping for Touch Panels
-        let touchStartY = 0;
-        window.addEventListener('touchstart', (e) => {
-            if (!window.matchMedia("(pointer: coarse)").matches) return;
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
+    // Touch Swipe Section Snapping for Touch Panels
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+        if (!window.matchMedia("(pointer: coarse)").matches) return;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
 
-        window.addEventListener('touchmove', (e) => {
-            if (!window.matchMedia("(pointer: coarse)").matches) return;
-            // Prevent default continuous drifting to enforce rigid section snapping
-            e.preventDefault();
-        }, { passive: false });
+    window.addEventListener('touchmove', (e) => {
+        if (!window.matchMedia("(pointer: coarse)").matches) return;
+        // Prevent default continuous drifting to enforce rigid section snapping
+        e.preventDefault();
+    }, { passive: false });
 
-        window.addEventListener('touchend', (e) => {
-            if (!window.matchMedia("(pointer: coarse)").matches) return;
-            if (isScrolling || document.body.classList.contains('is-loading')) return;
+    window.addEventListener('touchend', (e) => {
+        if (!window.matchMedia("(pointer: coarse)").matches) return;
+        if (isScrolling || document.body.classList.contains('is-loading')) return;
 
-            let touchEndY = e.changedTouches[0].clientY;
-            let diffY = touchStartY - touchEndY;
+        let touchEndY = e.changedTouches[0].clientY;
+        let diffY = touchStartY - touchEndY;
 
-            // Swipe Up (diffY > 50) -> Go to Next Section
-            if (diffY > 50 && currentSectionIndex < sections.length - 1) {
-                currentSectionIndex++;
-                customScrollTo(currentSectionIndex * window.innerHeight, 800);
-            } 
-            // Swipe Down (diffY < -50) -> Go to Previous Section
-            else if (diffY < -50 && currentSectionIndex > 0) {
-                currentSectionIndex--;
-                customScrollTo(currentSectionIndex * window.innerHeight, 800);
-            }
-        }, { passive: true });
+        // Swipe Up (diffY > 50) -> Go to Next Section
+        if (diffY > 50 && currentSectionIndex < sections.length - 1) {
+            currentSectionIndex++;
+            customScrollTo(currentSectionIndex * window.innerHeight, 800);
+        }
+        // Swipe Down (diffY < -50) -> Go to Previous Section
+        else if (diffY < -50 && currentSectionIndex > 0) {
+            currentSectionIndex--;
+            customScrollTo(currentSectionIndex * window.innerHeight, 800);
+        }
+    }, { passive: true });
 
     // Email Interaction & Copy Logic
     const emailText = document.getElementById('email-text');
@@ -1860,7 +1860,7 @@ function forcePlayAllSection2Videos() {
 
             const oldContainer = document.createElement('div');
             oldContainer.style.cssText = "position:absolute; width:100%; left:0; top:0; display:flex; justify-content:center; align-items:center; height:100%;";
-            
+
             const newContainer = document.createElement('div');
             newContainer.style.cssText = "position:absolute; width:100%; left:0; top:0; display:flex; justify-content:center; align-items:center; height:100%;";
 
@@ -1874,7 +1874,7 @@ function forcePlayAllSection2Videos() {
                 setTimeout(() => {
                     span.style.transform = 'translateY(100%)';
                     span.style.opacity = '0';
-                }, 50 + (i * 45)); 
+                }, 50 + (i * 45));
             });
 
             newText.split('').forEach((char, i) => {
@@ -1887,7 +1887,7 @@ function forcePlayAllSection2Videos() {
                 setTimeout(() => {
                     span.style.transform = 'translateY(0)';
                     span.style.opacity = '1';
-                }, 50 + (i * 45) + 350); 
+                }, 50 + (i * 45) + 350);
             });
 
             greetingWrapper.innerHTML = '';
@@ -1904,7 +1904,7 @@ function forcePlayAllSection2Videos() {
     const carouselItems3D = document.querySelectorAll('.js-carousel-3d-item');
     const counterBox3D = document.getElementById('counter-box-3d');
     let currentIdx3D = -1;
-    
+
     const vidData3D = [
         { id: 'Lxnl2D95EDU', start: 199 },
         { id: '_07BIWr67_4', start: 5 },
@@ -1917,7 +1917,7 @@ function forcePlayAllSection2Videos() {
     const counterBox4D = document.getElementById('counter-box-4d');
     let currentIdx4D = -1;
     let prevIdx4D = 0;
-    
+
     const vidData4D = [
         { id: 'goIWgzD0Ta8', start: 30 },
         { id: 'iG6J5uXvwJ8', start: 60 },
@@ -1930,7 +1930,7 @@ function forcePlayAllSection2Videos() {
     const itemsData4D = Array.from(carouselItems4D).map((el, index) => {
         const iframe = el.querySelector('iframe');
         const vidData = vidData4D[index];
-        
+
         // [FIX] Dynamically inject YouTube iframe src with API & CORS policies enabled
         if (iframe && vidData) {
             const startParam = vidData.start > 0 ? `&start=${vidData.start}` : '';
@@ -1965,11 +1965,11 @@ function forcePlayAllSection2Videos() {
             const rect = section3.getBoundingClientRect();
             // Check if section is currently active within the viewport
             const isVisible = (rect.left < window.innerWidth) && (rect.right > 0);
-            if (!isVisible) return; 
+            if (!isVisible) return;
 
             const screenWidth = window.innerWidth;
             const width = screenWidth > 768 ? Math.min(screenWidth * 0.34, 1020) : screenWidth * 0.72;
-            
+
             let activeIdx = window.touchSec3Index || 0;
 
             if (currentIdx3D !== activeIdx) {
@@ -2004,7 +2004,7 @@ function forcePlayAllSection2Videos() {
                         counterBox3D.appendChild(nextNum);
                         void counterBox3D.offsetWidth; // Force reflow layout layout calculation
 
-                        if (isUp) { oldNum.style.transform = 'translateY(100%)'; } 
+                        if (isUp) { oldNum.style.transform = 'translateY(100%)'; }
                         else { oldNum.style.transform = 'translateY(-100%)'; }
                         oldNum.style.opacity = '0';
                         nextNum.style.transform = 'translateY(0)';
@@ -2026,7 +2026,7 @@ function forcePlayAllSection2Videos() {
                         // Add image-rendering properties to mitigate 3D transform rasterization blur
                         thumbImg.style.cssText = "width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 4; display: none; image-rendering: high-quality; transform: translateZ(0);";
                         // Fallback to high-quality default if maxresdefault is missing (404)
-                        thumbImg.onerror = function() {
+                        thumbImg.onerror = function () {
                             if (this.src.includes('maxresdefault')) {
                                 this.src = this.src.replace('maxresdefault', 'hqdefault');
                             }
@@ -2040,58 +2040,58 @@ function forcePlayAllSection2Videos() {
 
                 item.el.style.width = `${width}px`;
                 item.el.style.top = `50%`;
-                
-            // [FIX] Trigger Fade-out before source update
-            if (item.iframe.style.opacity !== '0') {
-                item.iframe.style.transition = 'opacity 0.4s ease';
-                item.iframe.style.opacity = '0';
-            }
 
-            if (index === currentIdx3D) {
-                const isPlaying = typeof window.isS3Playing !== 'undefined' ? window.isS3Playing : false;
-                if (isPlaying) {
-                    if (thumbImg) thumbImg.style.display = 'none';
+                // [FIX] Trigger Fade-out before source update
+                if (item.iframe.style.opacity !== '0') {
+                    item.iframe.style.transition = 'opacity 0.4s ease';
+                    item.iframe.style.opacity = '0';
+                }
 
-                    if (item.s3PlayTimeout) clearTimeout(item.s3PlayTimeout);
-                    item.s3PlayTimeout = setTimeout(() => {
-                        if (hasUserInteracted && !window.isUserMuted) {
-                            controlYT(item.iframe, 'unMute');
-                        } else {
-                            controlYT(item.iframe, 'mute');
+                if (index === currentIdx3D) {
+                    const isPlaying = typeof window.isS3Playing !== 'undefined' ? window.isS3Playing : false;
+                    if (isPlaying) {
+                        if (thumbImg) thumbImg.style.display = 'none';
+
+                        if (item.s3PlayTimeout) clearTimeout(item.s3PlayTimeout);
+                        item.s3PlayTimeout = setTimeout(() => {
+                            if (hasUserInteracted && !window.isUserMuted) {
+                                controlYT(item.iframe, 'unMute');
+                            } else {
+                                controlYT(item.iframe, 'mute');
+                            }
+                            controlYT(item.iframe, 'playVideo');
+                        }, 600);
+                    } else {
+                        if (thumbImg && vidData) {
+                            thumbImg.src = `https://img.youtube.com/vi/${vidData.id}/hqdefault.jpg`;
+                            thumbImg.style.display = 'block';
                         }
-                        controlYT(item.iframe, 'playVideo');
-                    }, 600);
+                        controlYT(item.iframe, 'pauseVideo');
+                    }
+
+                    item.el.style.left = `50%`;
+                    item.el.style.transform = `translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1.5)`;
+                    item.el.style.zIndex = 10;
+                    item.el.style.opacity = '1';
                 } else {
+                    const isLeft = index < currentIdx3D;
+                    item.el.style.left = isLeft ? `25%` : `75%`;
+                    item.el.style.transform = `translate(-50%, -50%) translateZ(-300px) rotateY(${isLeft ? 35 : -35}deg)`;
+                    item.el.style.zIndex = 5;
+                    item.el.style.opacity = '0.3';
+
                     if (thumbImg && vidData) {
                         thumbImg.src = `https://img.youtube.com/vi/${vidData.id}/hqdefault.jpg`;
                         thumbImg.style.display = 'block';
                     }
                     controlYT(item.iframe, 'pauseVideo');
+                    controlYT(item.iframe, 'mute');
                 }
 
-                item.el.style.left = `50%`;
-                item.el.style.transform = `translate(-50%, -50%) translateZ(0px) rotateY(0deg) scale(1.5)`;
-                item.el.style.zIndex = 10;
-                item.el.style.opacity = '1';
-            } else {
-                const isLeft = index < currentIdx3D;
-                item.el.style.left = isLeft ? `25%` : `75%`;
-                item.el.style.transform = `translate(-50%, -50%) translateZ(-300px) rotateY(${isLeft ? 35 : -35}deg)`;
-                item.el.style.zIndex = 5;
-                item.el.style.opacity = '0.3';
-                
-                if (thumbImg && vidData) {
-                    thumbImg.src = `https://img.youtube.com/vi/${vidData.id}/hqdefault.jpg`;
-                    thumbImg.style.display = 'block';
-                }
-                controlYT(item.iframe, 'pauseVideo');
-                controlYT(item.iframe, 'mute');
-            }
-
-            // [FIX] Trigger Fade-in after source update
-            setTimeout(() => {
-                item.iframe.style.opacity = '1';
-            }, 450);
+                // [FIX] Trigger Fade-in after source update
+                setTimeout(() => {
+                    item.iframe.style.opacity = '1';
+                }, 450);
             });
         }
 
@@ -2162,7 +2162,7 @@ function forcePlayAllSection2Videos() {
                 } else {
                     controlYT(activeS2Item.active, 'unMute');
                 }
-                
+
                 // [FIX] Prevent Section 2 from playing if it's currently hidden
                 if (window.isMgSectionVisible) {
                     controlYT(activeS2Item.active, 'playVideo');
@@ -2179,12 +2179,12 @@ function forcePlayAllSection2Videos() {
                 } else {
                     controlYT(activeS3Item.iframe, 'unMute');
                 }
-                
+
                 // [FIX] Prevent Section 3 from playing if it's currently hidden
                 const sec3 = document.getElementById('interaction-3d');
-                const rect = sec3 ? sec3.getBoundingClientRect() : {left: 9999, right: -9999};
+                const rect = sec3 ? sec3.getBoundingClientRect() : { left: 9999, right: -9999 };
                 const isSec3Visible = (rect.left < window.innerWidth) && (rect.right > 0);
-                
+
                 if (isSec3Visible) {
                     controlYT(activeS3Item.iframe, 'playVideo');
                 } else {
@@ -2225,17 +2225,17 @@ function forcePlayAllSection2Videos() {
 
             s2PlayBtn.addEventListener('click', (e) => {
                 if (!isCoverFlow) {
-                  window.isS2Playing = true;
-                  setS2PlayUi(true);
-                  forcePlayAllSection2Videos();
-                  return;
+                    window.isS2Playing = true;
+                    setS2PlayUi(true);
+                    forcePlayAllSection2Videos();
+                    return;
                 }
                 e.stopPropagation();
                 window.isS2Playing = !window.isS2Playing;
                 const playIcon = s2PlayBtn.querySelector('.icon-play');
                 const pauseIcon = s2PlayBtn.querySelector('.icon-pause');
                 const activeS2Item = floatData.find(item => item.pos === 0);
-                
+
                 if (window.isS2Playing) {
                     if (playIcon) playIcon.style.display = 'none';
                     if (pauseIcon) pauseIcon.style.display = 'block';
@@ -2267,10 +2267,10 @@ function forcePlayAllSection2Videos() {
                 window.isS3Playing = !window.isS3Playing;
                 const playIcon = s3PlayBtn.querySelector('.icon-play');
                 const pauseIcon = s3PlayBtn.querySelector('.icon-pause');
-                
+
                 let activeIdx = window.touchSec3Index || 0;
                 const activeS3Item = itemsData3D[activeIdx];
-                
+
                 if (window.isS3Playing) {
                     if (playIcon) playIcon.style.display = 'none';
                     if (pauseIcon) pauseIcon.style.display = 'block';
@@ -2299,24 +2299,24 @@ function forcePlayAllSection2Videos() {
                 window.initMagneticButtons();
             }
         };
-        
+
         // Apply immediately and safely push to event queue
         setTimeout(applyMagneticEffect, 500);
 
         // --- Dynamic State Synchronization on Page Navigation ---
         // Ensure play icons reset to standard pause status whenever active items swap
         const oldUpdateCoverFlowVideos = window.updateCoverFlowVideos;
-        window.updateCoverFlowVideos = function(activeIndex) {
+        window.updateCoverFlowVideos = function (activeIndex) {
             if (typeof oldUpdateCoverFlowVideos === 'function') {
                 oldUpdateCoverFlowVideos(activeIndex);
             }
-        window.isS2Playing = false;
-        if (s2PlayBtn) {
-            const playIcon = s2PlayBtn.querySelector('.icon-play');
-            const pauseIcon = s2PlayBtn.querySelector('.icon-pause');
-            if (playIcon) playIcon.style.display = 'block';
-            if (pauseIcon) pauseIcon.style.display = 'none';
-        }
+            window.isS2Playing = false;
+            if (s2PlayBtn) {
+                const playIcon = s2PlayBtn.querySelector('.icon-play');
+                const pauseIcon = s2PlayBtn.querySelector('.icon-pause');
+                if (playIcon) playIcon.style.display = 'block';
+                if (pauseIcon) pauseIcon.style.display = 'none';
+            }
         };
 
         window.dispatchEvent(new MouseEvent('mousemove', { clientX: window.innerWidth / 2 - 10 }));
@@ -2330,11 +2330,11 @@ function forcePlayAllSection2Videos() {
         }
         const rect = section4.getBoundingClientRect();
         const isVisible = (rect.left < window.innerWidth) && (rect.right > 0);
-        if (!isVisible) return; 
+        if (!isVisible) return;
 
         const screenWidth = window.innerWidth;
         const width = screenWidth > 768 ? Math.min(screenWidth * 0.34, 1020) : screenWidth * 0.72;
-        
+
         let activeIdx = window.touchSec4Index || 0;
 
         if (currentIdx4D !== activeIdx) {
@@ -2367,7 +2367,7 @@ function forcePlayAllSection2Videos() {
                     counterBox4D.appendChild(nextNum);
                     void counterBox4D.offsetWidth;
 
-                    if (isUp) { oldNum.style.transform = 'translateY(100%)'; } 
+                    if (isUp) { oldNum.style.transform = 'translateY(100%)'; }
                     else { oldNum.style.transform = 'translateY(-100%)'; }
                     oldNum.style.opacity = '0';
                     nextNum.style.transform = 'translateY(0)';
@@ -2384,7 +2384,7 @@ function forcePlayAllSection2Videos() {
                 const thumbImg = document.createElement('img');
                 thumbImg.className = 'carousel-thumb-img';
                 thumbImg.style.cssText = "width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 4; display: none; image-rendering: high-quality; transform: translateZ(0);";
-                thumbImg.onerror = function() {
+                thumbImg.onerror = function () {
                     if (this.src.includes('maxresdefault')) {
                         this.src = this.src.replace('maxresdefault', 'hqdefault');
                     }
@@ -2397,7 +2397,7 @@ function forcePlayAllSection2Videos() {
 
             item.el.style.width = `${width}px`;
             item.el.style.top = `50%`;
-            
+
             // [FIX] Trigger Fade-out before source update
             if (item.iframe.style.opacity !== '0') {
                 item.iframe.style.transition = 'opacity 0.4s ease';
@@ -2431,7 +2431,7 @@ function forcePlayAllSection2Videos() {
                 item.el.style.zIndex = 10;
                 item.el.style.opacity = '1';
                 item.el.style.pointerEvents = 'auto';
-                
+
             } else if (index < currentIdx4D) {
                 // Left Side Stack
                 item.el.style.left = `25%`;
@@ -2440,14 +2440,14 @@ function forcePlayAllSection2Videos() {
                 // Only show immediate left
                 item.el.style.opacity = index === currentIdx4D - 1 ? '0.3' : '0';
                 item.el.style.pointerEvents = 'none';
-                
+
                 if (thumbImg && vidData) {
                     thumbImg.src = `https://img.youtube.com/vi/${vidData.id}/hqdefault.jpg`;
                     thumbImg.style.display = 'block';
                 }
                 controlYT(item.iframe, 'pauseVideo');
                 controlYT(item.iframe, 'mute');
-                
+
             } else if (index > currentIdx4D) {
                 // Right Side Stack
                 item.el.style.left = `75%`;
@@ -2456,7 +2456,7 @@ function forcePlayAllSection2Videos() {
                 // Only show immediate right
                 item.el.style.opacity = index === currentIdx4D + 1 ? '0.3' : '0';
                 item.el.style.pointerEvents = 'none';
-                
+
                 if (thumbImg && vidData) {
                     thumbImg.src = `https://img.youtube.com/vi/${vidData.id}/hqdefault.jpg`;
                     thumbImg.style.display = 'block';
@@ -2486,7 +2486,7 @@ function forcePlayAllSection2Videos() {
             window.isS4Playing = !window.isS4Playing;
             const isS4Playing = window.isS4Playing;
             const activeS4Item = itemsData4D[window.touchSec4Index || 0];
-            
+
             if (isS4Playing) {
                 if (playIcon) playIcon.style.display = 'none';
                 if (pauseIcon) pauseIcon.style.display = 'block';
@@ -2542,11 +2542,11 @@ function forcePlayAllSection2Videos() {
 
     if (entireWorksGrid) {
         const youtubeIds = [
-            "Lxnl2D95EDU", "Koc9PIFQkjA", "iG6J5uXvwJ8", "q8KgjqM-Bfs", 
-            "6mlTDTDvEgk", "WiU-ITTfPEg", "wb1Lllv2cYI", "_07BIWr67_4", 
-            "FPu5vUQmfW8", "98k_kijNi6Q", "goIWgzD0Ta8", "vTjvYr8cuy8", 
-            "D_j5DKR2M3w", "Ax4QGQF7Tjs", "2U7r6-5-UlU", "CkRY79b0IsI", 
-            "eEKzjTCCmPg", "dDBlbs1FhTw", "k-3d-X15TKs", "6AoVIXVLX9Q", 
+            "Lxnl2D95EDU", "Koc9PIFQkjA", "iG6J5uXvwJ8", "q8KgjqM-Bfs",
+            "6mlTDTDvEgk", "WiU-ITTfPEg", "wb1Lllv2cYI", "_07BIWr67_4",
+            "FPu5vUQmfW8", "98k_kijNi6Q", "goIWgzD0Ta8", "vTjvYr8cuy8",
+            "D_j5DKR2M3w", "Ax4QGQF7Tjs", "2U7r6-5-UlU", "CkRY79b0IsI",
+            "eEKzjTCCmPg", "dDBlbs1FhTw", "k-3d-X15TKs", "6AoVIXVLX9Q",
             "ZRZ3ghZN3tU", "MTxIMAfL1nw"
         ];
 
@@ -2559,13 +2559,13 @@ function forcePlayAllSection2Videos() {
                 </div>
             `;
         });
-        
+
         entireWorksGrid.innerHTML = gridHtml;
 
         // 1. 영상 오버레이 클릭 시 화면 확대 및 커서 토글
         const overlays = document.querySelectorAll('.video-overlay');
         overlays.forEach(overlay => {
-            overlay.addEventListener('click', function() {
+            overlay.addEventListener('click', function () {
                 const card = this.closest('.video-card');
                 let iframe = card.querySelector('iframe');
 
@@ -2579,7 +2579,7 @@ function forcePlayAllSection2Videos() {
                     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; compute-pressure');
 
                     card.appendChild(iframe);
-                    
+
                     // Trigger official initialization hook
                     setTimeout(() => {
                         getOrCreatePlayer(iframe, (readyPlayer) => {
@@ -2589,19 +2589,19 @@ function forcePlayAllSection2Videos() {
                     }, 50);
                     if (img) img.style.display = 'none';
                 }
-                
+
                 // 확대 모드 활성화 (Grid 해제, 해당 영상만 노출)
                 entireWorksGrid.classList.add('single-view');
                 card.classList.add('expanded');
-                
+
                 // 버튼 교체 (스크롤 숨기고, 뒤로가기 보이기)
                 if (upBtn) upBtn.style.display = 'none';
                 if (downBtn) downBtn.style.display = 'none';
                 if (backBtn) backBtn.style.display = 'flex';
-                
+
                 // 시스템 기본 마우스 커서 활성화
                 document.body.classList.add('video-expanded-mode');
-                
+
                 // 스크롤을 맨 위로 부드럽게 이동
                 scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -2615,7 +2615,7 @@ function forcePlayAllSection2Videos() {
         if (backBtn) {
             backBtn.addEventListener('click', () => {
                 const expandedCard = entireWorksGrid.querySelector('.video-card.expanded');
-                
+
                 if (expandedCard) {
                     const iframe = expandedCard.querySelector('iframe');
                     const img = expandedCard.querySelector('img');
@@ -2625,14 +2625,14 @@ function forcePlayAllSection2Videos() {
 
                     expandedCard.classList.remove('expanded');
                 }
-                
+
                 // Grid 모드 복구
                 entireWorksGrid.classList.remove('single-view');
-                
+
                 // 시스템 커서 해제 (커스텀 커서로 복구)
                 document.body.classList.remove('video-expanded-mode');
                 document.body.classList.remove('hovered-btn'); // 잔여 호버 스타일 제거
-                
+
                 // 버튼 복구
                 if (upBtn) upBtn.style.display = 'flex';
                 if (downBtn) downBtn.style.display = 'flex';
@@ -2645,13 +2645,13 @@ function forcePlayAllSection2Videos() {
             const upText = upBtn.querySelector('.nav-text');
             const downText = downBtn.querySelector('.nav-text');
             const pageIndicator = document.getElementById('page-indicator');
-            
+
             if (upText) upText.textContent = 'PREV PAGE';
             if (downText) downText.textContent = 'NEXT PAGE';
-            
+
             let currentPage = 0;
             let itemsPerPage = 6;
-            
+
             // Dynamic item count based on screen width (Fixed 3x3 Grid for Desktop)
             const calculateItemsPerPage = () => {
                 const width = window.innerWidth;
@@ -2660,23 +2660,23 @@ function forcePlayAllSection2Videos() {
                 if (width > 480) return 4;  // Mobile landscape
                 return 2;                   // Mobile portrait
             };
-            
+
             const updatePagination = () => {
                 itemsPerPage = calculateItemsPerPage();
                 const cards = entireWorksGrid.querySelectorAll('.video-card');
                 const maxPage = Math.max(0, Math.ceil(cards.length / itemsPerPage) - 1);
-                
+
                 // Safe-catch if resize causes current page to exceed max page
                 if (currentPage > maxPage) currentPage = maxPage;
-                
+
                 let visibleCount = 0;
-                
+
                 cards.forEach((card, index) => {
                     if (index >= currentPage * itemsPerPage && index < (currentPage + 1) * itemsPerPage) {
                         card.style.display = 'block';
-                        
+
                         card.classList.remove('reveal-animate');
-                        void card.offsetWidth; 
+                        void card.offsetWidth;
                         card.classList.add('reveal-animate');
                         card.style.animationDelay = `${visibleCount * 0.035}s`;
                         visibleCount++;
@@ -2692,23 +2692,23 @@ function forcePlayAllSection2Videos() {
                     pageIndicator.textContent = `${currentPage + 1} / ${maxPage + 1}`;
                 }
             };
-            
+
             // Initial render
             updatePagination();
-            
+
             // Handle window resize dynamically
             window.addEventListener('resize', () => {
                 clearTimeout(window.paginationResizeTimer);
                 window.paginationResizeTimer = setTimeout(updatePagination, 250);
             });
-            
+
             upBtn.addEventListener('click', () => {
                 if (currentPage > 0) {
                     currentPage--;
                     updatePagination();
                 }
             });
-            
+
             downBtn.addEventListener('click', () => {
                 const cards = entireWorksGrid.querySelectorAll('.video-card');
                 const maxPage = Math.ceil(cards.length / itemsPerPage) - 1;
@@ -2717,7 +2717,7 @@ function forcePlayAllSection2Videos() {
                     updatePagination();
                 }
             });
-            
+
             if (typeof initMagneticButtons === 'function') {
                 initMagneticButtons();
             }
@@ -2790,36 +2790,41 @@ function forcePlayAllSection2Videos() {
 
     // --- Dynamic Mobile & Touch Panel Sniffer Notification System ---
     const detectTouchOrMobileDevice = () => {
-        const isTouchCapable = window.matchMedia("(pointer: coarse)").matches || 
-                               /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-                               (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+        const isTouchCapable = window.matchMedia("(pointer: coarse)").matches ||
+            /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+            (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
 
         if (isTouchCapable) {
             const warningOverlay = document.createElement('div');
             warningOverlay.id = 'premium-device-warning';
             warningOverlay.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(7, 7, 10, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999999; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);";
-            
+
             warningOverlay.innerHTML = `
                 <div style="background: #ffffff; color: #000000; padding: 40px 32px; border-radius: 16px; max-width: 88%; width: 460px; text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,0.4); font-family: var(--font-sans); transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
                     <div style="font-size: 28px; margin-bottom: 20px;">⚠️</div>
                     <p style="font-size: 13.5px; line-height: 1.8; word-break: keep-all; margin-bottom: 28px; font-weight: 400; color: #1a1a1a; letter-spacing: -0.01em;">
-                        가로 화면의 PC 조작에 최적화된 웹페이지입니다. 모바일 또는 터치패널 사용 시 정상적인 조작이 어려울 수 있습니다. 최대한 빠르게 개선해나가도록 노력하겠습니다.
+                        Available only on PC. <br> PCでのみご利用いただけます。 <br>
                     </p>
-                    <button id="dismiss-warning-trigger" style="background: #000000; color: #ffffff; border: none; padding: 12px 36px; border-radius: 30px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                        확인 (Confirm)
-                    </button>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://foriio.com/WAVYmv" style="background: #000000; color: #ffffff; border: none; padding: 12px 24px; border-radius: 30px; font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; cursor: pointer; text-decoration: none; text-transform: uppercase; transition: all 0.3s;">
+                            Mobile Site (モバイル版へ)
+                        </a>
+                        <button id="dismiss-warning-trigger" style="background: #ffffff; color: #000000; border: 1px solid #000000; padding: 12px 24px; border-radius: 30px; font-family: var(--font-sans); font-size: 9px; font-weight: 300; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; text-transform: uppercase;">
+                            Continue anyway (そのまま進む)
+                        </button>
+                    </div>
                 </div>
             `;
-            
+
             document.body.appendChild(warningOverlay);
-            
+
             // Trigger smooth cinematic fade and slide up
             setTimeout(() => {
                 warningOverlay.style.opacity = '1';
                 const innerModal = warningOverlay.querySelector('div');
                 if (innerModal) innerModal.style.transform = 'translateY(0)';
             }, 200);
-            
+
             // Handle modal close event dismiss
             const dismissBtn = warningOverlay.querySelector('#dismiss-warning-trigger');
             if (dismissBtn) {
